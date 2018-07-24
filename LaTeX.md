@@ -134,11 +134,11 @@ lots of other stuff in particular **Jupyter**. According to the
 
 *Jupyter Notebook is an open-source web application that allows you to create and share documents that contain live code, equations, visualizations and narrative text.*
 
-There is an exciting  new product 
-[JupyterLab](https://blog.jupyter.org/jupyterlab-is-ready-for-users-5a6f039b8906) which is intended to be the next generation in preparation of scientific documents
+There is an exciting  new product called
+[JupyterLab](https://blog.jupyter.org/jupyterlab-is-ready-for-users-5a6f039b8906) which is intended to be the next generation in preparation of scientific documents and has an
 [extension to edit and preview LaTex](https://github.com/jupyterlab/jupyterlab-latex).
 
-Change directory to **$HOME** and  run JupyterLab from a terminal by doing 
+Since it comes with **Anaconda** all you have to do to get this running  is to change directory to **$HOME** and,  in the  terminal, type 
 **/usr/local/conda3/bin/jupyter lab** which gives a message like:
 
 **
@@ -146,23 +146,22 @@ The Jupyter Notebook is running at:
 http://localhost:8888/?token=7a5236631e6af925f6057152468b4900b284646e0f82b081
 **
 
-and paste this url into another window on Chrome to connect to the server. Now you have an  operational **offline** file editor (and much , much more).
+Now copy/paste this url into another window on Chrome to connect to the server so you have an  operational **offline** file editor (and much , much more).
 
 ### Crew and TexLive
 
-To install TexLive I installed **crew** which is yet another package manager.
-I followed the instruction [here](https://github.com/skycocker/chromebrew) :
+To install TexLive I installed **crew** which is (yet another) package manager; following the instruction [here](https://github.com/skycocker/chromebrew) :
 
 - to install I used **curl -Ls git.io/vddgY | bash** as **wget** failed.
 - finding the package is easy with  
 **crew list available | egrep tex\* ** 
-- **crew install texlive** does the heavy lifting for TexLive.
+- **crew install texlive** does the heavy lifting for TexLive.  There are messages telling you to install other TexLive packages using **tlmgr** as this is a minimal installation.
 
-I checked everything was working by typing **pdflatex** but this is optional. You get messages telling you to install other TexLive packages using **tlmgr** as this is a minimal installation.
+I checked everything was working by typing **pdflatex** in the terminal  but this is optional.
 
 ### JupyterLab LaTeX
 
-This was the hardest part for me at least because I made a mistake and kept overwriting my PATH so that *bash* and *sh* were no longer available. There are only two steps but I spent 8 hours trying to see what I was doing wrong.
+This was the hardest part for me at least because I made a mistake and kept overwriting my PATH so that *bash* and *sh* were no longer available. There are only three steps but I spent 8 hours trying to see what I was doing wrong.
 
 In the terminal:
 
@@ -170,27 +169,30 @@ In the terminal:
 1. **jupyter labextension install @jupyterlab/latex**
 this may take a long time as there is a ton of **node.js** 
 stuff to download and build. On my Asus the build took  182.25s.
-1. The extension defaults to running xelatex on the server qnd I changed this to pdflatex. 
-Generate a config file for JuPyteR
-via **jupyter notebook --generate-config** then edit **/home/chronos/user/.jupyter/jupyter_notebook_config.py**
-and add 
-**c.LatexConfig.latex_command = 'pdflatex'**
 
-### LaTeXing
+There is a third step that is not obvious: The extension defaults to running xelatex on the server and I changed this to pdflatex. 
+- Generate a config file for JuPyteR
+via **jupyter notebook --generate-config** 
+- edit **/home/chronos/user/.jupyter/jupyter_notebook_config.py**
+and add  **c.LatexConfig.latex_command = 'pdflatex'**
 
-Restart JuPyteR Lab, download [sample.tex](https://github.com/jupyterlab/jupyterlab-latex/blob/master/sample.tex) and open it using the file browser in 
+---
+
+### Previewing a LaTeX document
+
+Restart JuPyteR Lab:
+
+- download [sample.tex](https://github.com/jupyterlab/jupyterlab-latex/blob/master/sample.tex) in the browser
+- open it using the file browser in 
 Jupyter Lab. 
-
-Delete the graphic code:
-
+- delete the graphic code:
 '\begin{center}
   \includegraphics[width=0.65\textwidth]{images/jupyter_logo.png}
 \end{center}'
-
-as we have barebones LaTeX
+this is necessary as we have barebones LaTeX
 and haven't downloaded **jupyter_logo.png**.
 
-Finally do alt-click (on the Asus) to get a dialogue and select preview latex.
+Finally do alt-click (on the Asus) to get a dialogue and select preview latex. Voila:
 
 
 ![alt text][logo.png]
