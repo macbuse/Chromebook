@@ -195,7 +195,7 @@ and haven't downloaded **jupyter_logo.png**.
 Finally do alt-click (on the Asus) to get a dialogue and select preview latex. Voila:
 
 
-![alt text][https://github.com/macbuse/Chromebook/blob/master/logo.png]
+![alt text](https://github.com/macbuse/Chromebook/blob/master/logo.png)
 
 
 
